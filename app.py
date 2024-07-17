@@ -18,7 +18,7 @@ def determine_win(prediction, prev_roll, new_roll):
 @app.route('/')
 def index():
     initial_number = random.randint(1, 6)
-    return render_template('index.html', initial_number=initial_number)
+    return render_template('index.html', initial_number=initial_number, highscore=highscore)
 
 
 @app.route('/roll', methods=["POST"])
