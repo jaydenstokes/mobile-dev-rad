@@ -3,6 +3,7 @@ from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 score = 0
+highscore = 0
 
 
 def determine_win(prediction, prev_roll, new_roll):
@@ -22,7 +23,7 @@ def index():
 
 @app.route('/roll', methods=["POST"])
 def dice_roll():
-    global score
+    global score, highscore
     body = request.json
     prev_roll = body['previous']
     prediction = body['prediction']
@@ -31,11 +32,14 @@ def dice_roll():
 
     if did_win:
         score += 1
+        if score >= highscore:
+            highscore = score
     else:
         score = 0
 
     return jsonify({
         "roll": new_roll,
         "win": did_win,
-        "score": score
+        "score": score,
+        "highscore": highscore
     })
