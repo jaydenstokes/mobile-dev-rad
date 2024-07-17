@@ -65,11 +65,19 @@
         const body = await res.json();
 
         if (body) {
-            rolledElement.innerText = body.roll;
-            youRolledElement.innerText = `${diceFaces[body.roll]}`;
-            scoreElement.innerText = `Your Score: ${body.score}`;
-            highscoreElement.innerText = `Highscore: ${body.highscore}`;
-            answeredElement.innerText = body.win ? 'You answered correctly!' : 'You answered incorrectly!';
+            const { roll, score, highscore, win } = body;
+            rolledElement.innerText = roll;
+            youRolledElement.innerText = `${diceFaces[roll]}`;
+            scoreElement.innerText = `Your Score: ${score}`;
+            highscoreElement.innerText = `Highscore: ${highscore}`;
+
+            if (win) {
+                answeredElement.className = "text-green-400"
+                answeredElement.innerText = "You answered correctly!"
+            } else {
+                answeredElement.className = "text-red-400"
+                answeredElement.innerText = "You answered incorrectly!"
+            }
         }
     }
 </script>
