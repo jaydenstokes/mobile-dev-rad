@@ -69,7 +69,14 @@
             youRolledElement.innerText = `${diceFaces[body.roll]}`;
             scoreElement.innerText = `Your Score: ${body.score}`;
             highscoreElement.innerText = `Highscore: ${body.highscore}`;
-            answeredElement.innerText = body.win ? 'You answered correctly!' : 'You answered incorrectly!';
+
+            if (body.win) {
+                answeredElement.className = "text-green-400"
+                answeredElement.innerText = "You answered correctly!"
+            } else {
+                answeredElement.className = "text-red-400"
+                answeredElement.innerText = "You answered incorrectly!"
+            }
         }
     }
 </script>
