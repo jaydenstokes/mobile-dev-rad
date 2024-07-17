@@ -31,6 +31,8 @@ def dice_roll():
 
     if did_win:
         score += 1
+    else:
+        score = 0
 
     return jsonify({
         "roll": new_roll,
